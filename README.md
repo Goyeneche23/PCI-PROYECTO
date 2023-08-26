@@ -20,10 +20,15 @@ Tablero
 
 Tambien tendre que generar la cuadricula del juego como si fuera un tablero de ajedrez pero con unas proporciones de 10x50 (Ejemplo), cada celda tendra que contener su informacion.
 
-Entradas 
 
-Incluir las entradas del usuario, como las teclas de flecha para mover y los botones para rotar las piezas. 
 
-Movimientos
-
-Implementar la lógica para mover y rotar las piezas dentro de la cuadrícula. 
+PASOS
+1.- Importar PyGame
+2.- Establecer el Game Loop
+3.- Crear el tablero
+4.- Crear los Bloques
+5.- Establecer la fisica de los bloques
+6.- Colisiones 
+7.- Interfas
+9.- Velocidades
+10.- Sonido
