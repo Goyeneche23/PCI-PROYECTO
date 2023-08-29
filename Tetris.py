@@ -2,6 +2,7 @@
 # Date: 25-08-2023
 
 import pygame
+from tablero import Tablero
 
 pygame.init()
 screen = pygame.display.set_mode((400, 800))
