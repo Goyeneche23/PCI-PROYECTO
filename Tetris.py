@@ -1,13 +1,19 @@
 # Tetris Game, written in Python
-# Date: 25-08-2023
+# Date: 01-09-2023
 
-import pygame
+import pygame, sys
 from tablero import Tablero
 
 pygame.init()
-screen = pygame.display.set_mode((400, 800))
+Azul_fondo = (45, 45, 127)
+
+pantalla = pygame.display.set_mode((350.00, 700.00))
 pygame.display.set_caption("Tetris")
-clock = pygame.time.Clock()
+
+temporizador = pygame.time.Clock()
+
+game_tab = Tablero()
+game_tab.print_tab()
 
 while True:
     for event in pygame.event.get():
@@ -15,5 +21,6 @@ while True:
             pygame.quit()
             sys.exit()
 
+    pantalla.fill(Azul_fondo)
     pygame.display.update()
-    clock.tick(50)
+    temporizador.tick(50)
