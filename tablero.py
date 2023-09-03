@@ -1,4 +1,16 @@
 class Tablero:
+     def seleccion_colores(self):
+        Gris = (25, 30, 40)
+        Azul = (15, 65, 220)
+        Rojo = (230, 20, 20)
+        Verde = (50, 230, 25)
+        Cyan = (20, 205, 210)
+        Morado = (165, 0, 250)
+        Amarillo = (235, 235, 5)
+        Blanco = (255, 255, 255)
+
+        return [Gris, Azul, Rojo, Verde, Cyan, Morado, Amarillo, Blanco]
+         
     def __init__(self):
         self.num_filas = 20
         self.num_columnas = 10
@@ -12,17 +24,7 @@ class Tablero:
                 print(self.tab[fila][columna], end = " ")
             print()
 
-    def seleccion_colores(self):
-        Gris = (25, 30, 40)
-        Azul = (15, 65, 220)
-        Rojo = (230, 20, 20)
-        Verde = (50, 230, 25)
-        Cyan = (20, 205, 210)
-        Morado = (165, 0, 250)
-        Amarillo = (235, 235, 5)
-        Blanco = (255, 255, 255)
-
-        return [Gris, Azul, Rojo, Verde, Cyan, Morado, Amarillo, Blanco]
+   
 """
     def draw(self):
         for fila in range(self.num_filas):
