@@ -1,5 +1,5 @@
-# Tetris Game, written in Python
-# Date: 01-09-2023
+# Tetris Python 0.0
+# Fecha: 20-09-2023
 
 #Modulos
 import pygame, sys
@@ -35,4 +35,5 @@ while True:
 
     pygame.display.update()
     temporizador.tick(50)
+
 
