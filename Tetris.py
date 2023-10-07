@@ -37,3 +37,16 @@ while True:
     temporizador.tick(50)
 
 
+"""
+BaseColor = 'blue' 
+
+def adjust_color(color, brightness=1.0, saturation=1.0):
+    try:
+        c = mc.cnames[color]
+    except:
+        c = color
+    c = colorsys.rgb_to_hls(*mc.to_rgb(c))
+    adjusted_color = colorsys.hls_to_rgb(c[0], max(0, min(1, c[1] * brightness)), min(1, c[2] * saturation))
+    return tuple(int(x * 255) for x in adjusted_color)
+
+"""
