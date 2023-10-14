@@ -1,16 +1,16 @@
 # Tetris Python 0.0
 # Fecha: 20-09-2023
-
+#Version pygame-ce 2.3.1 (SDL 2.26.5, Python 3.11.1)
 #Modulos
+#estoy teniendo problemas para imprimir los bloques (piezas) en el tablero.
 import pygame, sys
 from tablero import Tablero
-import matplotlib.pyplot as plt 
-import colorsys
+from bloques import *
+from blokes import *
 
 pygame.init()
 Cyan = (20, 205, 210) #tupla RGB
 Neon = (57, 255, 40) #tupla RGB
-
 #Pantalla
 pantalla = pygame.display.set_mode((652.00, 835.00))
 #Titulo
@@ -18,8 +18,12 @@ pygame.display.set_caption("Tetris, By Juan Jose")
 
 temporizador = pygame.time.Clock()
 
+pygame.font.get_fonts()
+pantalla.fill(Neon)
+
 game_tab = Tablero()
 game_tab.print_tab()
+block = bloque1()
 
 while True:
     for event in pygame.event.get():
@@ -27,8 +31,9 @@ while True:
             pygame.quit()
             sys.exit()
 
-    pantalla.fill(Neon)
-    
+    block.draw(pantalla)
+    game_tab.tab[5][1] = 3
+
     game_tab.celdas(pantalla)
     game_tab.contorno(pantalla)
     game_tab.cuadro_titulo(pantalla)
@@ -36,17 +41,3 @@ while True:
     pygame.display.update()
     temporizador.tick(50)
 
-
-"""
-BaseColor = 'blue' 
-
-def adjust_color(color, brightness=1.0, saturation=1.0):
-    try:
-        c = mc.cnames[color]
-    except:
-        c = color
-    c = colorsys.rgb_to_hls(*mc.to_rgb(c))
-    adjusted_color = colorsys.hls_to_rgb(c[0], max(0, min(1, c[1] * brightness)), min(1, c[2] * saturation))
-    return tuple(int(x * 255) for x in adjusted_color)
-
-"""
