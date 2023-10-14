@@ -1,6 +1,6 @@
 import pygame, sys
-import matplotlib.pyplot as plt
 import colorsys
+from Colores import colores
 
 class Tablero:
     def __init__(self):
@@ -33,8 +33,8 @@ class Tablero:
         self.colores = self.seleccion_colores()
 
     def print_tab(self):
-        for fila in self.tab:
-            print(" ".join(map(str, fila)))
+        for i in self.tab:
+            print(" ".join(map(str, i)))
 
     def seleccion_colores(self):
         Gris = (25, 30, 40)
@@ -55,7 +55,7 @@ class Tablero:
                 cell_value = self.tab[fila][columna]
                 cell_rect = pygame.Rect(columna*self.cell_size +1, fila*self.cell_size +1, self.cell_size -1, self.cell_size -1)
                 Verde = (50, 230, 25)
-                pygame.draw.rect(pantalla, Verde[cell_value], cell_rect)
+                pygame.draw.rect(pantalla, self.colores[cell_value], cell_rect)
 
     def contorno(self, pantalla):
         neon1 = (34, 234, 69)
@@ -91,3 +91,5 @@ class Tablero:
     def cuadro_titulo(self, pantalla):
         negro = (0, 0, 0)
         pygame.draw.rect(pantalla, negro, (450,80,151.2,100), 10)
+
+
