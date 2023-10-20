@@ -22,10 +22,6 @@ Tambien tendre que generar la cuadricula del juego como si fuera un tablero de a
 
 
 
-PASOS
-1.- Importar PyGame
-2.- Establecer el Game Loop
-3.- Crear el tablero
 4.- Crear los Bloques
 5.- Establecer la fisica de los bloques
 6.- Colisiones 
