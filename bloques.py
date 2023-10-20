@@ -1,90 +1,77 @@
+from tablero import Tablero
+from blokes import *
+import random
 import pygame
-from Colores import colores
-from blokes import Bloques
 
-class lugar:
-    def __init__(self, fila, columna):
-            self.fila = fila
-            self.columna = columna
+class Juego:
+    def __init__(self):
+        self.tab = Tablero()
+        self.bloques = [bloque1(), bloque2(), bloque3(), bloque4(), bloque5(), bloque6(), bloque7()]
+        self.bloque_actual = self.obtener_bloque_aleatorio()
+        self.siguiente_bloque = self.obtener_bloque_aleatorio()
+        self.game_over = False
 
-class bloque1(Bloques):
-	def __init__(self):
-		super().__init__(id = 1)
-		self.cells = {
-			0: [lugar(0, 2), lugar(1, 0), lugar(1, 1), lugar(1, 2)],
-			1: [lugar(0, 1), lugar(1, 1), lugar(2, 1), lugar(2, 2)],
-			2: [lugar(1, 0), lugar(1, 1), lugar(1, 2), lugar(2, 0)],
-			3: [lugar(0, 0), lugar(0, 1), lugar(1, 1), lugar(2, 1)]
-		}
+    def obtener_bloque_aleatorio(self):
+        if not self.bloques:
+            self.bloques = [bloque1(), bloque2(), bloque3(), bloque4(), bloque5(), bloque6(), bloque7()]
+        bloque = random.choice(self.bloques)
+        self.bloques.remove(bloque)
+        return bloque
 
-class bloque2(Bloques):
-		def __init__(self):
-			super().__init__(id = 2)
-			self.cells = {
-				0: [lugar(0, 0), lugar(1, 0), lugar(1, 1), lugar(1, 2)],
-            	1: [lugar(0, 1), lugar(0, 2), lugar(1, 1), lugar(2, 1)],
-            	2: [lugar(1, 0), lugar(1, 1), lugar(1, 2), lugar(2, 2)],
-            	3: [lugar(0, 1), lugar(1, 1), lugar(2, 0), lugar(2, 1)]
-			}
+    def mover_izquierda(self):
+        self.mover(0, -1)
 
-class bloque3(Bloques):
-		def __init__(self):
-			super().__init__(id = 3)
-			self.cells = {
-				0: [lugar(0, 0), lugar(1, 0), lugar(1, 1), lugar(1, 2)],
-            	1: [lugar(0, 1), lugar(0, 2), lugar(1, 1), lugar(2, 1)],
-            	2: [lugar(1, 0), lugar(1, 1), lugar(1, 2), lugar(2, 2)],
-            	3: [lugar(0, 1), lugar(1, 1), lugar(2, 0), lugar(2, 1)]
-			}
+    def mover_derecha(self):
+        self.mover(0, 1)
 
-class bloque4(Bloques):
-		def __init__(self):
-			super().__init__(id = 4)
-			self.cells = {
-            0: [lugar(0, 1), lugar(0, 2), lugar(1, 0), lugar(1, 1)],
-            1: [lugar(0, 1), lugar(1, 1), lugar(1, 2), lugar(2, 2)],
-            2: [lugar(1, 1), lugar(1, 2), lugar(2, 0), lugar(2, 1)],
-            3: [lugar(0, 0), lugar(1, 0), lugar(1, 1), lugar(2, 1)]
-        }
-			
+    def mover_abajo(self):
+        self.mover(1, 0)
 
+    def mover(self, fila, columna):
+        self.bloque_actual.mover(fila, columna)
+        if not self.bloque_dentro() or not self.bloque_encaja():
+            self.bloque_actual.mover(-fila, -columna)
+            if fila == 1:
+                self.bloquear_bloque()
 
-class bloque5(Bloques):
-		def __init__(self):
-			super().__init__(id = 5)
-			self.cells = {
-				0: [lugar(0, 0), lugar(1, 0), lugar(0, 1), lugar(1, 1)],
-            	1: [lugar(0, 0), lugar(0, 0), lugar(0, 0), lugar(0, 0)],
-            	2: [lugar(0, 0), lugar(0, 0), lugar(0, 0), lugar(0, 0)],
-            	3: [lugar(0, 0), lugar(0, 0), lugar(0, 0), lugar(0, 0)]
-			}
+    def bloquear_bloque(self):
+        celdas = self.bloque_actual.obtener_posiciones_celdas()
+        for posicion in celdas:
+            self.tab.tab[posicion.fila][posicion.columna] = self.bloque_actual.id
+        self.bloque_actual = self.obtener_bloque_aleatorio()
+        self.siguiente_bloque = self.obtener_bloque_aleatorio()
+        lineas_limpiadas = self.tab.fila_completa()
+        if not self.bloque_encaja():
+            self.game_over = True
 
-class bloque6(Bloques):
-		def __init__(self):
-			super().__init__(id = 5)
-			self.cells = {
-	            0: [lugar(0, 1), lugar(1, 0), lugar(1, 1), lugar(1, 2)],
-	            1: [lugar(0, 1), lugar(1, 1), lugar(1, 2), lugar(2, 1)],
-	            2: [lugar(1, 0), lugar(1, 1), lugar(1, 2), lugar(2, 1)],
-	            3: [lugar(0, 1), lugar(1, 0), lugar(1, 1), lugar(2, 1)]
-	        }
+    def reiniciar(self):
+        self.tab.reiniciar()
+        self.bloques = [bloque1(), bloque2(), bloque3(), bloque4(), bloque5(), bloque6(), bloque7()]
+        self.bloque_actual = self.obtener_bloque_aleatorio()
+        self.siguiente_bloque = self.obtener_bloque_aleatorio()
 
-class bloque7(Bloques):
-		def __init__(self):
-			super().__init__(id = 7)
-			self.cells = {
-	            0: [lugar(0, 0), lugar(0, 1), lugar(1, 1), lugar(1, 2)],
-	            1: [lugar(0, 2), lugar(1, 1), lugar(1, 2), lugar(2, 1)],
-	            2: [lugar(1, 0), lugar(1, 1), lugar(2, 1), lugar(2, 2)],
-	            3: [lugar(0, 1), lugar(1, 0), lugar(1, 1), lugar(2, 0)]
-	        }
+    def bloque_encaja(self):
+        celdas = self.bloque_actual.obtener_posiciones_celdas()
+        for celda in celdas:
+            if not self.tab.libre(celda.fila, celda.columna):
+                return False
+        return True
 
-def seleccion_bloque(self):
-    if len(self.bloque) == 0:
-        self.bloque = [Bloque1(), Bloque2(), Bloque3(), Bloque4(), Bloque6(), Bloque7(), Bloque8()]
-    
-    bloque = random.choice(self.bloque)
-    self.bloque.remove(bloque)
-    
-    return bloque
+    def rotar(self):
+        self.bloque_actual.rotar()
+        if not self.bloque_dentro() or not self.bloque_encaja():
+            self.bloque_actual.deshacer_rotacion()
+
+    def bloque_dentro(self):
+        celdas = self.bloque_actual.obtener_posiciones_celdas()
+        for celda in celdas:
+            if not self.tab.dentro(celda.fila, celda.columna):
+                return False
+        return True
+
+    def imprimir_bloques(self, pantalla):
+        self.tab.dibujar(pantalla)
+        self.bloque_actual.dibujar(pantalla, 0, 0)
+        self.siguiente_bloque.dibujar(pantalla, 350, 365)
+
 
