@@ -16,7 +16,8 @@ Al tener cierto conocimiento previo de Python decidi hacer un proyecto que invol
 
 *Nota1: Para probar el programa sera necesario instalar e importar pygame, random, sys.
 
-*Nota2: Hay un archivo wav que no puedo subir al repositorio por su peso ("Tetris.py\MOONDOG Birds Lament.remix.wav") por lo cual recomiendo borrar las lineas relacionadas con la musica, o de existir alguna manera de que mande el archivo lo hare.
+*Nota2: Hay un archivo wav que no puedo subir al repositorio por su peso ("Tetris.py\MOONDOG Birds Lament.remix.wav") por lo cual recomiendo borrar las lineas relacionadas con la musica, o de existir alguna manera de que mande el archivo lo hare. 
+Link para descargar el archivo Wav faltante: https://soundcloud.com/charliefauv/moondog-birds-lament
 
 
 =================================================================
