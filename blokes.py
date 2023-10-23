@@ -1,5 +1,5 @@
 import pygame
-from Colores import colores
+from colores import *
 from blokes import *
 
 
